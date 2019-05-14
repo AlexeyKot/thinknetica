@@ -23,8 +23,6 @@ if is_rectangular && is_isosceles
     puts "Треугольник прямоугольный и равнобедренный."
 elsif is_rectangular
     puts "Треугольник прямоугольный."
-end
-
-if is_equilateral
+elsif is_equilateral
     puts "Треугольник равнобедренный и равносторонний, но не прямоугольный."
 end
