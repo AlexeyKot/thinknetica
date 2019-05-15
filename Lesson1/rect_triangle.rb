@@ -11,7 +11,7 @@ triangle_sides.push(gets.chomp.to_f)
 
 a, b, h = triangle_sides.sort
 
-is_rectangular = hypotenuse ** 2 == a ** 2 + n ** 2
+is_rectangular = h**2 == a**2 + b**2
 
 is_isosceles = a == b || b == h
 
