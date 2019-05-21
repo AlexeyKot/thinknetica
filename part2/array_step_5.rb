@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-my_array = [10]
+my_array = []
 
-i = my_array.first
+i = 5
 
 while i < 100
   i += 5
