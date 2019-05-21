@@ -12,17 +12,11 @@ puts 'Введите год'
 year = gets.chomp.to_i
 
 def leap?(year)
-  if (year % 4).zero? && (year % 100 != 0)
-    true
-  elsif (year % 400).zero?
-    true
-  else
-    false
-  end
+  (year % 4).zero? && (year % 100 != 0) || (year % 400).zero? ? true : false
 end
 
 months[2] = 29 if leap?(year)
 
 day_number = months.take(month - 1).sum + day
 
-puts day_number
+puts "Порядковый номер даты: #{day_number}"

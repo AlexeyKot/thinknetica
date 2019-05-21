@@ -17,6 +17,6 @@ months = {
 
 puts 'Месяцы, в которых 30 дней:'
 
-months.each do |key, value|
-  puts key if value == 30
+months.each do |month, day|
+  puts month if day == 30
 end
