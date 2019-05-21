@@ -2,11 +2,9 @@
 
 fibo = [0, 1]
 
-i = 0
-
 while fibo.last <= 100
-  fibo_next = fibo[i] + fibo[i.next]
+  fibo_next = fibo[-2] + fibo[-1]
   fibo << fibo_next
   i += 1
-  puts fibo[i]
+  puts fibo[-2]
 end
