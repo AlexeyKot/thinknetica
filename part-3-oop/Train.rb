@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Train
+  attr_accessor :type
+  
   def initialize(number, type, wagon_qnt)
     self.number = number
     self.type = type
@@ -38,5 +40,5 @@ class Train
 
   private
 
-  attr_accessor :number, :type, :wagon_qnt, :speed
+  attr_accessor :number, :wagon_qnt, :speed
 end
