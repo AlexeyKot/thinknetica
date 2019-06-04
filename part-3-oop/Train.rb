@@ -46,14 +46,38 @@ class Train
     @route
   end
 
-  def go_to_next_station
-    self.current_station_index += 1
-    if route.stations[current_station_index]
-      route.stations[current_station_index].remove_train(self)
-      route.stations[current_station_index].add_train(self)
+  def prev_station
+    if current_station_index.positive?
+      route.stations[current_station_index - 1]
     else
-      puts 'Поезд уже прибыл в конечную точку маршрута'
+      puts 'Поезд уже находится на первой станции'
     end
+  end
+
+  def current_station
+    route.stations[current_station_index]
+  end
+
+  def next_station
+    if route.stations[current_station_index + 1]
+      route.stations[current_station_index + 1]
+    else
+      puts 'Поезд уже находится на конечной станции'
+    end
+  end
+
+  def go_to(station)
+    current_station.remove_train(self)
+    station.add_train(self)
+    self.current_station_index = route.stations.index(station)
+  end
+
+  def go_to_next_station
+    go_to(next_station) if next_station
+  end
+
+  def go_to_prev_station
+    go_to(prev_station) if prev_station
   end
 
   protected

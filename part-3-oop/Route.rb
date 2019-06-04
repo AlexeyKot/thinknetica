@@ -2,7 +2,7 @@
 
 class Route
   attr_accessor :stations
-.a
+
   def initialize(start, finish)
     self.stations = []
     stations.push(start)

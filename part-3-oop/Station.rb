@@ -32,7 +32,7 @@ class Station
     freight_trains
   end
 
-  private
+  protected
 
   attr_accessor :name, :trains
 end
