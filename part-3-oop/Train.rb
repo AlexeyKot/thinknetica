@@ -36,7 +36,27 @@ class Train
     wagon_qnt
   end
 
+  def route=(route)
+    @route = route
+    self.current_station_index = 0
+    route.stations[current_station_index].add_train(self)
+  end
+
+  def route
+    @route
+  end
+
+  def go_to_next_station
+    self.current_station_index += 1
+    if route.stations[current_station_index]
+      route.stations[current_station_index].remove_train(self)
+      route.stations[current_station_index].add_train(self)
+    else
+      puts 'Поезд уже прибыл в конечную точку маршрута'
+    end
+  end
+
   protected
 
-  attr_accessor :number, :type, :wagon_qnt, :speed
+  attr_accessor :number, :type, :wagon_qnt, :speed, :current_station_index
 end
