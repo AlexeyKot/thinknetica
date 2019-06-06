@@ -1,15 +1,19 @@
 # frozen_string_literal: true
 
 class Train
+
+  attr_reader :route
+
   def initialize(number, type, wagon_qnt)
     self.number = number
     self.type = type
     self.wagon_qnt = wagon_qnt
     self.speed = 0
+    @route = nil
   end
 
   def gas(number)
-    self.speed += number
+    self.speed += number if number.positive?
   end
 
   def stop
@@ -42,16 +46,8 @@ class Train
     route.stations[current_station_index].add_train(self)
   end
 
-  def route
-    @route
-  end
-
   def prev_station
-    if current_station_index.positive?
-      route.stations[current_station_index - 1]
-    else
-      puts 'Поезд уже находится на первой станции'
-    end
+    route.stations[current_station_index - 1] if current_station_index.positive?
   end
 
   def current_station
@@ -59,11 +55,7 @@ class Train
   end
 
   def next_station
-    if route.stations[current_station_index + 1]
-      route.stations[current_station_index + 1]
-    else
-      puts 'Поезд уже находится на конечной станции'
-    end
+    route.stations[current_station_index + 1]
   end
 
   def go_to(station)
