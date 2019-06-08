@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class Station
+  private
+
+  attr_accessor :name, :trains
+
+  public
+
   def initialize(name)
     self.name = name
     self.trains = []
@@ -31,8 +37,4 @@ class Station
     end
     freight_trains
   end
-
-  protected
-
-  attr_accessor :name, :trains
 end

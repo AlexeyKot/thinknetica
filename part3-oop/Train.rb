@@ -1,15 +1,19 @@
 # frozen_string_literal: true
 
 class Train
+  private
 
-  attr_reader :route
+  attr_accessor :number, :type, :speed, :current_station_index
+
+  public
+
+  attr_reader :route, :wagons
 
   def initialize(number, type, wagon_qnt)
     self.number = number
     self.type = type
-    self.wagon_qnt = wagon_qnt
+    @wagons = wagon_qnt
     self.speed = 0
-    @route = nil
   end
 
   def gas(number)
@@ -29,15 +33,11 @@ class Train
   end
 
   def add_wagon
-    self.wagon_qnt += 1 if stopped?
+    @wagons += 1 if stopped?
   end
 
   def remove_wagon
-    self.wagon_qnt += 0 if stopped?
-  end
-
-  def wagons
-    wagon_qnt
+    @wagons -= 1 if stopped? && @wagons.positive?
   end
 
   def route=(route)
@@ -71,8 +71,4 @@ class Train
   def go_to_prev_station
     go_to(prev_station) if prev_station
   end
-
-  protected
-
-  attr_accessor :number, :type, :wagon_qnt, :speed, :current_station_index
 end
