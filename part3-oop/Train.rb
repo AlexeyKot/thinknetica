@@ -3,16 +3,18 @@
 class Train
   private
 
-  attr_accessor :number, :type, :speed, :current_station_index
+  attr_accessor :current_station_index
+
+  attr_writer :speed, :wagons, :type, :number
 
   public
 
-  attr_reader :route, :wagons
+  attr_reader :route, :wagons, :speed, :type, :number
 
-  def initialize(number, type, wagon_qnt)
+  def initialize(number, type, wagons)
     self.number = number
     self.type = type
-    @wagons = wagon_qnt
+    self.wagons = wagons
     self.speed = 0
   end
 
@@ -28,16 +30,12 @@ class Train
     speed.zero?
   end
 
-  def current_speed
-    speed
-  end
-
   def add_wagon
-    @wagons += 1 if stopped?
+    self.wagons += 1 if stopped?
   end
 
   def remove_wagon
-    @wagons -= 1 if stopped? && @wagons.positive?
+    self.wagons -= 1 if stopped? && wagons.positive?
   end
 
   def route=(route)

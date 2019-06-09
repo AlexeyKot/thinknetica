@@ -5,8 +5,7 @@ class Route
 
   def initialize(start, finish)
     self.stations = []
-    stations.push(start)
-    stations.push(finish)
+    stations << start << finish
   end
 
   def add_inter_station(station)

@@ -3,9 +3,13 @@
 class Station
   private
 
-  attr_accessor :name, :trains
+  attr_accessor :name
+
+  attr_writer :trains
 
   public
+
+  attr_reader :trains
 
   def initialize(name)
     self.name = name
@@ -20,21 +24,13 @@ class Station
     trains.delete(train)
   end
 
-  def all_trains
-    trains
-  end
-
-  def pass_trains
-    pass_trains = trains.select do |train|
-      train.type == 'passenger'
+  def trains_by_type
+    trains_sorted_by_type = trains.sort_by(&:type)
+    trains_sorted_by_type.map do |train|
+      { train.type => train.number }
     end
-    pass_trains
-  end
-
-  def freight_trains
-    freight_trains = trains.select do |train|
-      train.type == 'freight'
-    end
-    freight_trains
+    # filtered_trains = trains.select do |train|
+    #   train.type == type
+    # end
   end
 end
