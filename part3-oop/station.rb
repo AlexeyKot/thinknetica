@@ -25,12 +25,12 @@ class Station
   end
 
   def trains_by_type
-    trains_sorted_by_type = trains.sort_by(&:type)
-    trains_sorted_by_type.map do |train|
-      { train.type => train.number }
+    train_types = trains.map(&:type).uniq
+    train_types.map do |type|
+      current_type_trains = trains.select { |train| train.type == type }
+      puts "Поездов типа #{type} найдено: #{current_type_trains.count}"
+      puts current_type_trains.to_s
+      current_type_trains.count
     end
-    # filtered_trains = trains.select do |train|
-    #   train.type == type
-    # end
   end
 end
