@@ -5,16 +5,14 @@ class Train
 
   attr_accessor :current_station_index
 
-  attr_writer :speed, :wagons, :number
-
   public
 
   attr_reader :route, :wagons, :speed, :number
 
   def initialize(number)
-    self.number = number
-    self.wagons = []
-    self.speed = 0
+    @number = number
+    @wagons = []
+    @speed = 0
   end
 
   def gas(number)
